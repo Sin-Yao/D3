@@ -16,8 +16,8 @@ d3.csv("./np01.csv",
 		var ln = data.length;
 		console.log(data);
 		var maxy = d3.max(data, function(d){ return d.GDP; });
-		var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return d.GDP*(height/maxy)});
-		ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "blue").attr("fill", "none");
+		var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return height-d.GDP*(height/maxy)});
+		ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "black").attr("fill", "none");
 	}
 
 );
