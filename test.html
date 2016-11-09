@@ -7,10 +7,10 @@
 </head>
 <body>
 <script type="text/javascript">
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-    
+var margin = {top: 50, right: 50, bottom: 50, left: 50},
+    width = 1024 - margin.left - margin.right,
+    height = 768 - margin.top - margin.bottom;
+
 var ctrl = d3.select("body").append("svg").attr("width", width).attr("height", height);
 d3.csv("./np01.csv", 
 	function(data)
