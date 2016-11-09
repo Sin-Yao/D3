@@ -15,7 +15,7 @@ d3.csv("./np01.csv",
 	{
 		var ln = data.length;
 		console.log(data);
-		var maxy = d3.max(data, function(d){ return d.close; });
+		var maxy = d3.max(data, function(d){ return d.GDP; });
 		var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return height-d.close*(height/maxy)});
 		ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "red").attr("fill", "none");
 	}
