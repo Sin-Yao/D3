@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<div id='cloud'></div>
+<div id='andy'></div>
 <script type="text/javascript">
 
 d3.csv("./wordcloud.csv", 
@@ -20,7 +20,7 @@ d3.csv("./wordcloud.csv",
 	console.log(data)
 	 d3.wordcloud()
         .size([800, 400])
-        .selector('#cloud')
+        .selector('#andy')
         .words(data)
         .start();
 }
