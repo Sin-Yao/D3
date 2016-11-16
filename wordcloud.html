@@ -16,22 +16,15 @@
 
 d3.csv("./wordcloud.csv", 
 	function(data)
-{console.log(data)}
-);
-
- d3.wordcloud()
+{
+	console.log(data)
+	 d3.wordcloud()
         .size([800, 400])
         .selector('#cloud')
         .words(data)
         .start();
-
-
-
-
-
-
-
-
+}
+);
 </script>
 
 </body>
