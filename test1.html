@@ -43,8 +43,8 @@ d3.csv("https://sin-yao.github.io/D3/data.csv", function(error,data) {
 
         //在这里对读取的数据进行绘图处理
 });
- x.domain(d3.extent(data, function(d) { return d.Date; }));
- y.domain(d3.extent(data, function(d) { return d.efficiency; }));
+ //x.domain(d3.extent(data, function(d) { return d.Date; }));
+ //y.domain(d3.extent(data, function(d) { return d.efficiency; }));
 
  var line = d3.svg.line()
                 .x(function(d) { return x(d.Date); })
