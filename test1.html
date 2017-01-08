@@ -33,16 +33,14 @@ var svg = d3.select("body").append("svg")
             .scale(y)
             .orient("left");
 
-d3.csv("https://sin-yao.github.io/D3/data.csv", function(error,data) {
+d3.csv("https://sin-yao.github.io/D3/data.csv", function(data) {
         if (error) throw error;
 
         data.forEach(function(d) {
             d.Date = parseDate(d.Date);
             d.efficiency = +d.efficiency;
-        });
-
-        //在这里对读取的数据进行绘图处理
-});
+        x.domain(d3.extent(data, function(d) { return d.Date; }));
+ y.domain(d3.extent(data, function(d) { return d.efficiency; }));
 
  var line = d3.svg.line()
                 .x(function(d) { return x(d.Date); })
@@ -81,6 +79,12 @@ svg.append("path")
                 .transition()
                 .duration(2000)
                 .attr("opacity", 1)
+        });
+
+        //在这里对读取的数据进行绘图处理
+});
+ 
+ 
 
 
 
