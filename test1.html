@@ -47,25 +47,8 @@ d3.csv("https://sin-yao.github.io/D3/data.csv", function(error,data) {
                 .x(function(d) { return x(d.Date); })
                 .y(function(d) { return y(d.efficiency); });
         
-var yInner = d3.svg.axis()
-                .scale(y)
-                .tickSize(-width,0,0)
-                .tickFormat("")
-                .orient("left")
-                .ticks(5);
-//添加纵轴网格线
-var yInnerBar=svg.append("g")
-                .attr("class", "inner_line")
-                .attr("transform", "translate(0,-25)")
-                .call(yInner);
-svg.append("path")
-                .datum(data)
-                .attr("class", "line")
-                .attr("d", line)
-                .attr("opacity", 0)
-                .transition()
-                .duration(2000)
-                .attr("opacity", 1)
+
+
         });
     svg.append("g")
                 .attr("class", "x axis")
@@ -91,7 +74,7 @@ var yInner = d3.svg.axis()
                 .tickFormat("")
                 .orient("left")
                 .ticks(5);
-//添加纵轴网格线
+
 var yInnerBar=svg.append("g")
                 .attr("class", "inner_line")
                 .attr("transform", "translate(0,-25)")
