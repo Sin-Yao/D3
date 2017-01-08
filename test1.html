@@ -34,8 +34,7 @@ var svg = d3.select("body").append("svg")
             .orient("left");
 
 d3.csv("https://sin-yao.github.io/D3/data.csv", function(data) {
-        if (error) throw error;
-
+        
         data.forEach(function(d) {
             d.Date = parseDate(d.Date);
             d.efficiency = +d.efficiency;
