@@ -33,7 +33,7 @@ var svg = d3.select("body").append("svg")
             .scale(y)
             .orient("left");
 
-d3.csv("https://github.com/Sin-Yao/D3/blob/master/data.csv", function(error,data) {
+d3.csv("https://sin-yao.github.io/D3/data.csv", function(error,data) {
         if (error) throw error;
 
         data.forEach(function(d) {
