@@ -1,32 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <title>Document</title>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
+<style> /* set the CSS */
+.line {
+  fill: none;
+  stroke: blue;
+  stroke-width: 2px;
+}
+</style>
+<h2 align = "center" >停車格使用率</span></h2>
 <body>
-<script type="text/javascript">
-var margin = {top: 50, right: 50, bottom: 150, left: 100},
-    width = 1024 - margin.left - margin.right,
-    height = 768 - margin.top - margin.bottom;
+<script>
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-var ctrl = d3.select("body").append("svg").attr("width", width).attr("height", height);
-d3.csv("./np01.csv", 
-	function(data)
-	{
-		var ln = data.length;
-		console.log(data);
-		var maxy = d3.max(data, function(d){ return d.GDP; });
-		var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return height-d.GDP*(height/maxy)});
-		ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "blue").attr("fill", "none");
-	}
+var parseTime = d3.timeParse("%Y/%m/%d");
 
+var x = d3.scaleTime().range([0, width]);
 
-);
+var y = d3.scaleLinear().range([height, 0]);
 
+var valueline = d3.line()
+    .x(function(d) { return x(d.Date); })
+    .y(function(d) { return y(d.efficiency); });
 
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("https://sin-yao.github.io/D3/park.csv", function(error, data) {
+  if (error) throw error;
+  data.forEach(function(d) {
+      d.Date = parseTime(d.Date);
+      d.efficiency = +d.efficiency;
+  });
+  
+  x.domain(d3.extent(data, function(d) { return d.Date; }));
+  y.domain([d3.min(data, function(d) { return d.efficiency; }), d3.max(data, function(d) { return d.efficiency; })]);
+  
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", valueline);
+  
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+  
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+});
 
 </script>
 </body>
-</html>
